@@ -3,10 +3,36 @@ import './App.css';
 import './lists.css';
 import React, {useState} from 'react';
 import * as ReactBootstrap from "react-bootstrap"
-import List from "./List"; 
+import firebase from "./utils/firebaseapp";
+import List from "./List";
+ 
 
-function App(){
+export default function App(){
   const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+
+  const handleOnChange = (e) => {
+    setTitle(e.target.value);
+    
+  };
+
+  const handleOnPrice = (e) =>{
+    setPrice(e.target.value)
+  }
+
+  const create = () => {
+    const dbref = firebase.database().ref('Todo');
+    
+    const todo = {
+      title,
+      price,
+      complete:false
+    };
+    dbref.push(todo);
+    
+  };
+
+
   return (
     <div class = "app">
       <ReactBootstrap.Navbar bg="light" variant="light">
@@ -23,14 +49,16 @@ function App(){
   </ReactBootstrap.Navbar>
 
     <div class = "top">
-      <form id = "todo" onSubmit = {this.addItem}>
-        <input type = "text" placeholder = "enter" value = {this.state.currentItem.text} onChange = {this.handleInput}></input>
-        <button type = "submit">Add</button>
-      </form>
+      <div id = "todo" >
+        <input type = "text" placeholder = "enter" value = {title} onChange = {handleOnChange}></input>
+        <input type = "text" placeholder = "enter" value = {price} onChange = {handleOnPrice}></input>
+        <button  onClick = {create}>Add</button>
+      </div>
       </div>
 
-      <List items = {this.state.items}></List>
 
+    <List/>
+      
   </div>
     
   );
@@ -38,4 +66,4 @@ function App(){
 
 
 
-export default App;
+
