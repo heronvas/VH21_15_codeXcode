@@ -7,11 +7,41 @@
   pointer-events: none;
 }
 
+#todo input{
+  background-color: azure;
+  border: 0;
+  width: 200px;
+  height: 50px;
+  padding: 0 20px;
+  margin: 20px;
+}
+
+#todo input::placeholder{
+  color: black;
+  font-weight: bolder;
+}
+
+#todo input:focus, #todo button:focus{
+  outline: none;
+}
+
+#todo button{
+  height: 50px;
+  width: 80px;
+  border-radius: 5px;
+  border:0;
+  background-color: bisque;
+  cursor: pointer;
+  font-weight: bolder;
+  color:rgb(78, 72, 62);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 
 .App-header {
   background-color: #282c34;
